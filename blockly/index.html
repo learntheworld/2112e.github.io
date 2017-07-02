@@ -167,28 +167,13 @@
     var ws = new WebSocket("ws://192.168.4.1:2112")
     ws.onopen = function(){
       ws.send(data)
+      console.log("Data sent!")
       ws.close()
     }
   }
   
-//  function download() {
-//    var filename = "mycode.py"
-//    var text = Blockly.Python.workspaceToCode(workspace)
-//    var element = document.createElement('a');
-//    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-//    element.setAttribute('download', filename);
-//
-//    element.style.display = 'none';
-//    document.body.appendChild(element);
-//
-//    element.click();
-//
-//    document.body.removeChild(element);
-//  }
   
   
   </script>
 
-<form onsubmit="upload()">
-  <input type="submit" value="Upload to Pythagoras">
-  </form>
+<button onclick="upload()">Upload to Pythagoras</button>
