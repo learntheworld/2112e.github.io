@@ -160,24 +160,35 @@
   var workspace = Blockly.inject('blocklyDiv',
   {toolbox: document.getElementById('toolbox')});
 
-  function download() {
-    var filename = "mycode.py"
+  function upload(){
+    var filename = "cache.py"
     var text = Blockly.Python.workspaceToCode(workspace)
-    var element = document.createElement('a');
-    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-    element.setAttribute('download', filename);
-
-    element.style.display = 'none';
-    document.body.appendChild(element);
-
-    element.click();
-
-    document.body.removeChild(element);
+    var data = "\x01"+filename+"\x02"+text+"\x03"
+    var ws = new WebSocket("ws://192.168.4.1:2112")
+    ws.onopen = function(){
+      ws.send(data)
+      ws.close()
+    }
   }
+  
+//  function download() {
+//    var filename = "mycode.py"
+//    var text = Blockly.Python.workspaceToCode(workspace)
+//    var element = document.createElement('a');
+//    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+//    element.setAttribute('download', filename);
+//
+//    element.style.display = 'none';
+//    document.body.appendChild(element);
+//
+//    element.click();
+//
+//    document.body.removeChild(element);
+//  }
   
   
   </script>
 
-<form onsubmit="download()">
-  <input type="submit" value="Download">
+<form onsubmit="upload()">
+  <input type="submit" value="Upload to Pythagoras">
   </form>
