@@ -81,6 +81,19 @@ Blockly.Python['right'] = function(block) {
     var code = 'right()\n';
     return code;
 };
+
+Blockly.Blocks['stop'] = {
+    init: function() {
+        this.setNextStatement(true);
+        this.setPreviousStatement(true);
+        this.setColour(160);
+        this.appendDummyInput()
+            .appendField("Stop");
+        this.setTooltip('Stops motion.');
+        this.setHelpUrl('http://google.com');
+    }
+};
+
 Blockly.Python['stop'] = function(block) {
     var code = 'stop()\n';
     return code;
