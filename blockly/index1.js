@@ -119,3 +119,20 @@ Blockly.Python['wait'] = function(block){
     var code = 'time.sleep(float('+number_name+'))\n'
     return code;
 }
+
+Blockly.Blocks['deepsleep'] = {
+    init: function() {
+        this.setNextStatement(true);
+        this.setPreviousStatement(true);
+        this.setColour(160);
+        this.appendDummyInput()
+            .appendField("sleep if tired");
+        this.setTooltip("If the robot is tired, fall asleep.")
+        this.setHelpUrl("http://google.com");
+    }
+};
+
+Blockly.Python['deepsleep'] = function(block) {
+    var code = 'deepsleepIfNeeded();\n';
+    return code;
+};
